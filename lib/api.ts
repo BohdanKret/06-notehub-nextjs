@@ -1,5 +1,10 @@
 import axios from "axios";
-import { type Note, type FetchNotesResponse } from "../types/note";
+import { type Note } from "../types/note";
+
+export interface FetchNotesResponse {
+  notes: Note[];
+  totalPages: number;
+}
 
 const API_TOKEN = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
