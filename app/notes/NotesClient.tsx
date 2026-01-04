@@ -7,6 +7,7 @@ import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import Pagination from "@/components/Pagination/Pagination";
+import Modal from "@/components/Modal/Modal";
 import css from "./notes.module.css";
 
 export default function NotesClient() {
@@ -61,11 +62,9 @@ export default function NotesClient() {
         )}
 
         {isModalOpen && (
-          <div className={css.modalBackdrop}>
-            <div className={css.modal}>
-              <NoteForm onSuccess={() => setIsModalOpen(false)} />
-            </div>
-          </div>
+          <Modal onClose={() => setIsModalOpen(false)}>
+            <NoteForm onSuccess={() => setIsModalOpen(false)} />
+          </Modal>
         )}
       </div>
     </main>
