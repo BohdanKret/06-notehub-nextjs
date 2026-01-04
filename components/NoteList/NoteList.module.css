@@ -1,0 +1,116 @@
+/* components/NoteList/NoteList.module.css */
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.listItem {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    transition: all 0.2s ease;
+}
+
+.listItem:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: #212529;
+}
+
+.content {
+    margin: 0;
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #495057;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #0d6efd;
+    background-color: #e7f1ff;
+    border: 1px solid #b6d4fe;
+    border-radius: 16px;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.detailsLink {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0d6efd;
+    background-color: #e7f1ff;
+    border: 1px solid #b6d4fe;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.detailsLink:hover {
+    background-color: #cfe2ff;
+}
+
+.button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
+}
+
+.button:hover {
+    background-color: #bb2d3b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+}
+
+.button:active {
+    transform: translateY(0);
+}

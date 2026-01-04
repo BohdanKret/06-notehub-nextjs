@@ -1,0 +1,73 @@
+"use client";
+
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchNotes } from "@/lib/api";
+import NoteList from "@/components/NoteList/NoteList";
+import SearchBox from "@/components/SearchBox/SearchBox";
+import NoteForm from "@/components/NoteForm/NoteForm";
+import Pagination from "@/components/Pagination/Pagination";
+import css from "./notes.module.css";
+
+export default function NotesClient() {
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["notes", page, search],
+    queryFn: () => fetchNotes(page, search),
+  });
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setPage(1);
+  };
+
+  if (isLoading) {
+    return <p>Loading, please wait...</p>;
+  }
+
+  if (isError) {
+    return <p>Something went wrong.</p>;
+  }
+
+  return (
+    <main>
+      <div className={css.container}>
+        <div className={css.toolbar}>
+          <SearchBox value={search} onChange={handleSearchChange} />
+          <button
+            className={css.addButton}
+            onClick={() => setIsModalOpen(true)}
+          >
+            Create note +
+          </button>
+        </div>
+
+        {data && data.notes.length > 0 ? (
+          <>
+            <NoteList notes={data.notes} />
+            {data.totalPages > 1 && (
+              <Pagination
+                currentPage={page}
+                totalPages={data.totalPages}
+                onPageChange={setPage}
+              />
+            )}
+          </>
+        ) : (
+          <p className={css.noNotes}>No notes found.</p>
+        )}
+
+        {isModalOpen && (
+          <div className={css.modalBackdrop}>
+            <div className={css.modal}>
+              <NoteForm onSuccess={() => setIsModalOpen(false)} />
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
