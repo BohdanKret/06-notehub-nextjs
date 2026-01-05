@@ -20,6 +20,7 @@ export default function NotesClient() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["notes", page, debouncedSearch],
     queryFn: () => fetchNotes(page, debouncedSearch),
+    placeholderData: (previousData) => previousData,
   });
 
   const handleSearchChange = (value: string) => {
